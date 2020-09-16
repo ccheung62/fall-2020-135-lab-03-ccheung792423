@@ -32,10 +32,9 @@ double get_min_east() {
   }
   std::string junk;        
   getline(fin, junk); // read one line from the file to get rid of it
-  std::string date;
   double eastSt;
   double min = get_east_storage("01/01/2018");
-  while (fin >> date >> eastSt) {
+  while (fin >> junk >> eastSt) {
     fin.ignore(INT_MAX, '\n');
     if (eastSt < min){
       min = eastSt;
@@ -64,4 +63,34 @@ double get_max_east() {
   }
   fin.close();
   return max; 
+}
+
+std::string compare_basins(std::string date) {
+  std::ifstream fin("Current_Reservoir_Levels.tsv");
+  if (fin.fail()) {
+    std::cerr << "File cannot be opened for reading." << std::endl;
+    exit(1); // exit if failed to open the file
+  }
+  std::string junk;        
+  getline(fin, junk); // read one line from the file to get rid of it
+  std::string currDate;
+  double eastEl;
+  double westEl;
+  
+  while (currDate != date) {
+    fin >> currDate >> junk >> eastEl >> junk >> westEl;
+    fin.ignore(INT_MAX, '\n');
+  }
+  if (eastEl > westEl) {
+    return "East";
+  }
+  else if (westEl > eastEl) {
+    return "West";
+  }
+  else {
+    return "Equal";
+  }
+  
+
+  fin.close();
 }
