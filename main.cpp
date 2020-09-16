@@ -25,6 +25,8 @@ int main()
 
   //Task D
   reverse_oreder("01/05/2018", "01/28/2018");
+  std::cout << "\n";
+  reverse_oreder("02/14/2018", "03/14/2018");
   
   return 0;
 }
