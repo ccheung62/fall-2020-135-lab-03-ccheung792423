@@ -12,4 +12,4 @@ reverseorder.o: reverseorder.cpp reverseorder.h
 	g++ -c reverseorder.cpp
 
 clean:
-	rm -f main.o reservoir.o
+	rm -f main.o reservoir.o reverseorder.o
