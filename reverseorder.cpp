@@ -16,18 +16,18 @@ void reverse_oreder(std::string date1, std::string date2) {
   getline(fin, junk); // read one line from the file to get rid of it
   std::string currDate;
   double westEl;
-  std::string rev = "";
+  std::string rev = ""; //stores reversed line
   while (currDate!=date1){
-    fin >> currDate >> junk >> junk >> junk >> westEl; //take the first column as date and the second as east storage
+    fin >> currDate >> junk >> junk >> junk >> westEl; // moves through the data
     fin.ignore(INT_MAX, '\n'); //skips to the end of line, ignorring the remaining columns
   }
-  while (currDate!=date2) {
-    rev =  currDate + " " + std::to_string(westEl).erase(6,9) + "ft\n" + rev;
+  while (currDate!=date2) { //loop between the ealier date and one before the later date speficied 
+    rev =  currDate + " " + std::to_string(westEl).erase(6,9) + "ft\n" + rev; //add each new data in front of the string to put it in reverse order
     fin >> currDate >> junk >> junk >> junk >> westEl; 
     fin.ignore(INT_MAX, '\n');
   }
-  rev = currDate + " " + std::to_string(westEl).erase(6,9) + "ft\n" + rev;
-  std::cout << rev;
+  rev = currDate + " " + std::to_string(westEl).erase(6,9) + "ft\n" + rev; //puts in the last date's data
+  std::cout << rev; //prints out the end result
 
   fin.close();
 }
